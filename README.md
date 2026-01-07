@@ -1,21 +1,45 @@
-<<<<<<< HEAD
-# React + Vite
+# 🌱 Farming Friend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Farming Friend is a frontend-based web application designed to help farmers by
+providing crop guidance, weather updates, and an online fertilizer store.
 
-Currently, two official plugins are available:
+## 🚀 Features
+- Crop-wise farming guidance
+- Weather information
+- Fertilizer & product store
+- Add to cart and checkout
+- Mock user authentication
+- Responsive user interface
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack
+- React.js
+- Vite
+- JavaScript
+- Material UI
+- CSS
 
-## React Compiler
+## 📂 Project Structure
+src/
+ ├── components/
+ ├── pages/
+ ├── assets/
+ ├── App.jsx
+ └── main.jsx
+ 
+## ▶️ How to Run the Project
+1. Clone the repository  
+   git clone https://github.com/patilarun93230-tech/Farming-Friend.git
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Install dependencies  
+   npm install
 
-## Expanding the ESLint configuration
+3. Start the development server  
+   npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Farming-Friend
-Farming Friend is a frontend-based web application that provides crop guidance and an online fertilizer store interface for farmers.
->>>>>>> 6d117fcb699ca61029eb28fee07adfd0998500ea
+## 📌 Future Scope
+- Backend integration using Node.js & MongoDB
+- Real user authentication
+- Payment gateway integration
+
+## 👨‍💻 Developer
+**Arun Patil**
