@@ -1,0 +1,65 @@
+/* Main navbar layout */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo / App name */
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation links container */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Common nav buttons */
+.nav-btn {
+  color: #ffffff !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  padding: 6px 14px !important;
+}
+
+/* Hover effect */
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Register button */
+.register-btn {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-transform: none !important;
+  border-radius: 8px !important;
+  padding: 6px 14px !important;
+}
+
+/* Logout button */
+.logout-btn {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-transform: none !important;
+  border-radius: 8px !important;
+  padding: 6px 14px !important;
+}
+
+/* Responsive – Mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 4px;
+  }
+
+  .nav-btn,
+  .register-btn,
+  .logout-btn {
+    font-size: 13px !important;
+    padding: 4px 10px !important;
+  }
+}

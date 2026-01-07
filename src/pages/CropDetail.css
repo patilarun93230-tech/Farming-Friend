@@ -1,0 +1,38 @@
+.crop-detail {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+/* Title */
+.crop-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.crop-icon {
+  color: #2e7d32;
+  font-size: 34px;
+}
+
+/* Guide card */
+.guide-card {
+  padding: 30px;
+  border-radius: 16px;
+  background: #ffffff;
+  margin-bottom: 30px;
+}
+
+/* Guide points */
+.guide-point {
+  font-size: 16px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+/* Button */
+.buy-btn {
+  padding: 10px 24px !important;
+}

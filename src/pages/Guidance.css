@@ -1,0 +1,84 @@
+/* Page spacing */
+.guidance {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+/* Title */
+.guidance-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.guidance-icon {
+  color: #2e7d32;
+  font-size: 34px;
+  font-style: normal;
+}
+
+/* Card */
+.crop-card {
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden; /* image ke liye important */
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.crop-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Image */
+.crop-image {
+  height: 180px;
+  width: 100%;
+  object-fit: cover; /* 🔥 image stretch nahi hogi */
+}
+
+/* Card content */
+.crop-card .MuiCardContent-root {
+  flex-grow: 1; /* 🔥 sab cards same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Crop name */
+.crop-name {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Season text */
+.crop-season {
+  color: #666;
+  margin-bottom: 12px;
+}
+
+/* Link */
+.crop-link {
+  text-decoration: none;
+  color: #311785;
+  font-weight: 500;
+}
+
+.crop-link:hover {
+  text-decoration: underline;
+}
+
+/* Mobile spacing safety */
+@media (max-width: 600px) {
+  .crop-card {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,39 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+/* Card */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+/* Title */
+.login-title {
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Subtitle */
+.login-subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.login-btn {
+  margin-top: 18px !important;
+  padding: 10px !important;
+  font-size: 16px !important;
+}
+
+/* Register link */
+.register-link {
+  text-align: center;
+  margin-top: 16px;
+}

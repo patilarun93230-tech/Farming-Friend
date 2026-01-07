@@ -1,0 +1,63 @@
+.video-call-page {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.vc-heading {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.vc-subtitle {
+  color: #555;
+  margin-bottom: 35px;
+}
+
+.vc-card {
+  border-radius: 16px;
+  padding: 10px;
+  background: linear-gradient(145deg, #ffffff, #f2f2f2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.vc-card:hover {
+  transform: translateY(-8px);
+}
+
+.vc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vc-avatar {
+  background-color: #2e7d32;
+  width: 55px;
+  height: 55px;
+  font-size: 22px;
+}
+
+.farmer-name {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.farmer-info {
+  color: #444;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.vc-btn {
+  margin-top: 18px;
+  width: 100%;
+  border-radius: 25px;
+  font-weight: 600;
+  padding: 10px;
+}
+.vc-avatar {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #2e7d32;
+}
