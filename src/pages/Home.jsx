@@ -282,9 +282,7 @@ function Home() {
               <li>
                 <a href="/login">Login</a>
               </li>
-              <li>
-                <a href="/VideoCall">Video Call</a>
-              </li>
+            
             </ul>
           </div>
 

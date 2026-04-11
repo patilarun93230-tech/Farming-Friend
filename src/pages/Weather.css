@@ -1,48 +1,97 @@
+/* 🌿 Background */
 .weather-page {
-  margin-top: 30px;
-  margin-bottom: 400px;
+  min-height: 100vh;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #d7f0e3, #8fd3a5);
+  font-family: "Segoe UI", sans-serif;
 }
 
+/* 🌟 Title */
 .weather-title {
   text-align: center;
-  margin-bottom: 25px;
-  font-weight: bold;
+  font-weight: 700;
+  color: #1b5e20;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+/* 🔍 Search bar container */
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+/* 🔘 Buttons (global override for MUI) */
+button {
+  background: linear-gradient(135deg, #2e7d32, #68d96e) !important;
+  border-radius: 12px !important;
+  padding: 10px 22px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #1b5e20, #1eb423) !important;
+}
+
+button {
+  border-radius: 12px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border: 2px solid #2e7d32 !important;
+  color: #2e7d32 !important;
+}
+
+/* 📦 Cards */
+.weather-day-card {
+  border-radius: 22px !important;
+  padding: 18px;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.3s ease;
+}
+
+/* ✨ Hover */
+.weather-day-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* 📅 Day */
+.weather-day-card p:first-child {
+  font-size: 16px;
+  font-weight: 600;
   color: #2e7d32;
 }
 
-.weather-day-card {
-  height: 100%;
-  width: 205%;
-  text-align: center;
-  border-radius: 18px;
-  border: 2px solid black;
-  background: linear-gradient(135deg, #e8f5e9, #ffffff);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease;
-}
-
-.weather-day-card:hover {
-  transform: translateY(-6px);
-}
-
-.weather-day {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.weather-icon {
-  font-size: 40px;
-  color: #ff9800;
-  margin: 8px 0;
-}
-
-.weather-temp {
+/* 🌡️ Temp */
+.weather-day-card p:nth-child(3) {
   font-size: 26px;
   font-weight: bold;
+  color: #1b5e20;
+  margin-top: 5px;
 }
 
-.weather-condition {
-  font-size: 15px;
+/* ☁️ Condition */
+.weather-day-card p:nth-child(4) {
+  font-size: 14px;
   color: #555;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .weather-title {
+    font-size: 28px;
+  }
+
+  .weather-day-card {
+    padding: 14px;
+  }
 }
