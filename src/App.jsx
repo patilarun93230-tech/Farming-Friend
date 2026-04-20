@@ -13,6 +13,13 @@ import CropDetail from "./pages/CropDetail";
 import Checkout from "./pages/Checkout";
 import VideoCall from "./pages/VideoCall";
 import Weather from "./pages/Weather";
+
+/* 🔥 NEW IMPORTS (Distributor) */
+import DistributorDashboard from "./pages/DistributorDashboard";
+import AddProduct from "./pages/AddProduct";
+import ManageProducts from "./pages/ManageProducts";
+import Orders from "./pages/Orders";
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,7 +33,8 @@ function App() {
         <Route path="/store" element={<Store />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* Protected Routes */}
+
+        {/* 🔐 Protected Routes */}
         <Route
           path="/cart"
           element={
@@ -36,15 +44,52 @@ function App() {
           }
         />
 
-        <Route path="/videocall" element={<VideoCall />} />
-
-        <Route path="/weather" element={<Weather />} />
-
         <Route
           path="/checkout"
           element={
             <ProtectedRoute>
               <Checkout />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Other */}
+        <Route path="/videocall" element={<VideoCall />} />
+        <Route path="/weather" element={<Weather />} />
+
+        {/* 🏪 DISTRIBUTOR ROUTES (IMPORTANT 🔥) */}
+        <Route
+          path="/distributor"
+          element={
+            <ProtectedRoute>
+              <DistributorDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/add-product"
+          element={
+            <ProtectedRoute>
+              <AddProduct />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/manage-products"
+          element={
+            <ProtectedRoute>
+              <ManageProducts />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
             </ProtectedRoute>
           }
         />

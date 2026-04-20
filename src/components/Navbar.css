@@ -1,71 +1,136 @@
-/* Main navbar layout */
+/* ===== NAVBAR MAIN (GLASS EFFECT) ===== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 8px 18px;
+
+  backdrop-filter: blur(10px);
+  background: rgba(34, 139, 34, 0.85); /* modern glass green */
+
+  border-radius: 10px;
 }
 
-/* Logo / App name */
+/* ===== LOGO ===== */
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 2px; /* tight spacing */
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+
+  transition: 0.3s;
 }
 
-/* Navigation links container */
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* ===== NAV LINKS CONTAINER ===== */
 .nav-links {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Common nav buttons */
+/* ===== COMMON BUTTON STYLE ===== */
 .nav-btn {
   color: #ffffff !important;
   text-transform: none !important;
   font-weight: 500 !important;
-  border-radius: 8px !important;
+
+  border-radius: 20px !important;
   padding: 6px 14px !important;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  transition: all 0.3s ease;
 }
 
-/* Hover effect */
+/* ===== ICON SIZE ===== */
+.nav-btn svg {
+  font-size: 17px !important;
+}
+
+/* ===== HOVER EFFECT (MODERN) ===== */
 .nav-btn:hover {
-  background-color: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px);
 }
 
-/* Register button */
+/* ===== ACTIVE TAB ===== */
+.active {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ===== REGISTER BUTTON ===== */
 .register-btn {
-  color: #ffffff !important;
-  border-color: #ffffff !important;
-  text-transform: none !important;
-  border-radius: 8px !important;
+  color: white !important;
+  border: 1px solid white !important;
+
+  border-radius: 20px !important;
   padding: 6px 14px !important;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  transition: all 0.3s ease;
 }
 
-/* Logout button */
+.register-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ===== LOGOUT BUTTON ===== */
 .logout-btn {
-  color: #ffffff !important;
-  border-color: #ffffff !important;
-  text-transform: none !important;
-  border-radius: 8px !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+
+  border-radius: 20px !important;
   padding: 6px 14px !important;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  transition: all 0.3s ease;
 }
 
-/* Responsive – Mobile */
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ===== CART HIGHLIGHT (IMPORTANT CTA) ===== */
+.nav-btn[href="/cart"] {
+  background-color: #ff9800 !important;
+  color: white !important;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .nav-links {
-    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
   }
 
   .nav-btn,
   .register-btn,
   .logout-btn {
     font-size: 13px !important;
-    padding: 4px 10px !important;
+    padding: 5px 10px !important;
   }
-}
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
+
+  .nav-btn svg {
+    font-size: 15px !important;
   }
 }

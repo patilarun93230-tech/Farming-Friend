@@ -1,40 +1,99 @@
+/* ===== PAGE BACKGROUND ===== */
 .register-container {
-  display: flex;
+  min-height: 100vh;
+  display: flex !important;
+  align-items: center;
   justify-content: center;
-  margin-top: 60px;
+
+  background: linear-gradient(135deg, #2e7d32, #66bb6a);
 }
 
-/* Card style */
+/* ===== CARD ===== */
 .register-card {
+  padding: 30px !important;
+  border-radius: 16px !important;
   width: 100%;
-  max-width: 460px;
-  padding: 30px;
-  border-radius: 16px;
+  max-width: 420px;
+
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95) !important;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+
+  text-align: center;
 }
 
-/* Title */
+/* ===== TITLE ===== */
 .register-title {
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: 4px;
+  font-weight: 700 !important;
+  margin-bottom: 5px !important;
+  color: #2e7d32;
 }
 
-/* Subtitle */
+/* ===== SUBTITLE ===== */
 .register-subtitle {
-  text-align: center;
-  color: #555;
+  font-size: 14px;
+  color: #666;
   margin-bottom: 20px;
 }
 
-/* Register button */
-.register-btn {
-  margin-top: 18px !important;
-  padding: 10px !important;
-  font-size: 16px !important;
+/* ===== INPUT FIELDS ===== */
+.MuiTextField-root {
+  margin-bottom: 12px !important;
 }
 
-/* Login link */
+/* Input focus color */
+#id1{
+  text-align:left;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #2e7d32 !important;
+}
+
+/* Label focus color */
+.MuiInputLabel-root.Mui-focused {
+  color: #2e7d32 !important;
+}
+
+/* ===== BUTTON ===== */
+.register-btn {
+  margin-top: 10px !important;
+  padding: 10px !important;
+  border-radius: 25px !important;
+
+  background: linear-gradient(45deg, #2e7d32, #66bb6a) !important;
+
+  font-weight: 600 !important;
+  text-transform: none !important;
+
+  transition: all 0.3s ease !important;
+}
+
+/* Hover effect */
+.register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== LOGIN LINK ===== */
 .login-link {
-  text-align: center;
-  margin-top: 16px;
+  margin-top: 15px !important;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #2e7d32;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 500px) {
+  .register-card {
+    padding: 20px !important;
+  }
 }

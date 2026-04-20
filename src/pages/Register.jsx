@@ -7,57 +7,71 @@ import {
   Paper,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 import "./Register.css";
 
 function Register() {
   const navigate = useNavigate();
 
+  const [role, setRole] = useState("farmer");
+
   const handleRegister = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const firstName = e.target.firstName.value;
-    const lastName = e.target.lastName.value;
-    const land = e.target.land.value;
-    const experience = e.target.experience.value;
-    const mobile = e.target.mobile.value;
-    const password = e.target.password.value;
+  const firstName = e.target.firstName.value.trim();
+  const lastName = e.target.lastName.value.trim();
+  const mobile = e.target.mobile.value.trim();
+  const password = e.target.password.value.trim();
 
-    if (
-      !firstName ||
-      !lastName ||
-      !land ||
-      !experience ||
-      !mobile ||
-      !password
-    ) {
-      alert("Please fill all fields");
-      return;
-    }
+  const land = e.target.land?.value;
+  const experience = e.target.experience?.value;
 
-    const user = {
-      firstName,
-      lastName,
-      land,
-      experience,
-      mobile,
-      password,
-    };
+  if (!firstName || !lastName || !mobile || !password) {
+    alert("Please fill all fields");
+    return;
+  }
 
-    // Save user data (mock backend)
-    localStorage.setItem("user", JSON.stringify(user));
+  if (mobile.length !== 10 || isNaN(mobile)) {
+    alert("Enter valid 10-digit mobile number");
+    return;
+  }
 
-    navigate("/login");
+  if (password.length < 4) {
+    alert("Password must be at least 4 characters");
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const userExists = users.find((u) => u.mobile === mobile);
+  if (userExists) {
+    alert("User already exists with this number");
+    return;
+  }
+
+  const newUser = {
+    firstName,
+    lastName,
+    mobile,
+    password,
+    role,
+    ...(role === "farmer" && { land, experience }),
   };
+
+  users.push(newUser);
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Registration Successful ✅");
+
+  e.target.reset();
+  navigate("/login");
+};
 
   return (
     <Container className="register-container">
       <Paper elevation={6} className="register-card">
         <Typography variant="h5" className="register-title">
-          🌾 Farmer Registration
-        </Typography>
-
-        <Typography className="register-subtitle">
-          Create your Farming Friend account
+          🌾 Register on Farming Friend
         </Typography>
 
         <form onSubmit={handleRegister}>
@@ -75,32 +89,49 @@ function Register() {
             margin="normal"
           />
 
-          {/* Land Area Dropdown */}
+          {/* ROLE SELECT 🔥 */}
           <TextField
+            id="id1"
             select
-            name="land"
-            label="Land Area (Acres)"
+            label="Select Role"
             fullWidth
             margin="normal"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
           >
-            {Array.from({ length: 11 }, (_, i) => (
-              <MenuItem key={i} value={i}>
-                {i} Acres
-              </MenuItem>
-            ))}
+            <MenuItem value="farmer">🌾 Farmer</MenuItem>
+            <MenuItem value="distributor">🏪 Distributor</MenuItem>
           </TextField>
 
-          {/* Experience Dropdown */}
-          <TextField
-            select
-            name="experience"
-            label="Farming Experience"
-            fullWidth
-            margin="normal"
-          >
-            <MenuItem value="fresher">🌱 Fresher Farmer</MenuItem>
-            <MenuItem value="experienced">🌾 Experienced Farmer</MenuItem>
-          </TextField>
+          {/* Farmer Fields */}
+          {role === "farmer" && (
+            <>
+              <TextField
+                select
+                name="land"
+                label="Land Area (Acres)"
+                fullWidth
+                margin="normal"
+              >
+                {Array.from({ length: 11 }, (_, i) => (
+                  <MenuItem key={i} value={i}>
+                    {i} Acres
+                  </MenuItem>
+                ))}
+              </TextField>
+
+              <TextField
+                select
+                name="experience"
+                label="Farming Experience"
+                fullWidth
+                margin="normal"
+              >
+                <MenuItem value="fresher">🌱 Fresher</MenuItem>
+                <MenuItem value="experienced">🌾 Experienced</MenuItem>
+              </TextField>
+            </>
+          )}
 
           <TextField
             name="mobile"

@@ -1,0 +1,33 @@
+/* ===== ORDERS ===== */
+.orders-container {
+  margin-top: 30px;
+}
+
+.orders-title {
+  font-weight: 600;
+}
+
+/* Order Card */
+.order-card {
+  border-radius: 14px !important;
+  transition: 0.3s;
+}
+
+.order-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Status */
+.order-status {
+  margin-top: 5px;
+  font-weight: 500;
+  color: orange;
+}
+
+/* Empty */
+.empty-text {
+  text-align: center;
+  margin-top: 20px;
+  color: gray;
+}

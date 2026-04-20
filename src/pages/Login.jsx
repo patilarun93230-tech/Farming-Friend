@@ -1,42 +1,82 @@
-import { Button, TextField, Container, Typography, Paper } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Container,
+  Typography,
+  Paper,
+} from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
 
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleLogin = () => {
-    const savedUser = JSON.parse(localStorage.getItem("user"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (savedUser) {
-      localStorage.setItem("isLoggedIn", "true");
+  if (users.length === 0) {
+    alert("Please register first");
+    return;
+  }
 
-      // Show full name from register data
-      localStorage.setItem(
-        "userName",
-        savedUser.firstName + " " + savedUser.lastName
-      );
+  // 🔥 Find matching user
+  const foundUser = users.find(
+    (u) => u.mobile === mobile && u.password === password
+  );
 
-      navigate("/");
-    } else {
-      alert("Please register first");
-    }
-  };
+  if (!foundUser) {
+    alert("Invalid mobile or password");
+    return;
+  }
 
+  // Login success
+localStorage.setItem("isLoggedIn", "true");
+
+localStorage.setItem(
+  "userName",
+  foundUser.firstName + " " + foundUser.lastName
+);
+
+localStorage.setItem("role", foundUser.role);
+
+  // 🔥 ROLE BASED REDIRECT
+  if (foundUser.role === "distributor") {
+    navigate("/distributor");
+  } else {
+    navigate("/");
+  }
+};
   return (
     <Container className="login-container">
       <Paper elevation={6} className="login-card">
         <Typography variant="h5" className="login-title">
-          🌱 Farmer Login
+          🌱 Login to Farming Friend
         </Typography>
 
         <Typography className="login-subtitle">
-          Login to your Farming Friend account
+          Access your account
         </Typography>
 
-        <TextField label="Contact Number" fullWidth margin="normal" />
+        <TextField
+          label="Contact Number"
+          fullWidth
+          margin="normal"
+          value={mobile}
+          onChange={(e) => setMobile(e.target.value)}
+        />
 
-        <TextField label="Password" type="password" fullWidth margin="normal" />
+        <TextField
+          label="Password"
+          type="password"
+          fullWidth
+          margin="normal"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
         <Button
           variant="contained"
@@ -48,7 +88,7 @@ function Login() {
         </Button>
 
         <Typography className="register-link">
-          New farmer? <Link to="/register">Create account</Link>
+          New user? <Link to="/register">Create account</Link>
         </Typography>
       </Paper>
     </Container>
@@ -56,3 +96,4 @@ function Login() {
 }
 
 export default Login;
+

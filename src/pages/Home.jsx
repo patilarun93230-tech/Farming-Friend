@@ -27,7 +27,7 @@ function Home() {
       setIndex((prev) => (prev + 1) % images.length);
     }, 3500);
     return () => clearInterval(timer);
-  }, []);
+  }, []);  
 
   return (
     <>
@@ -49,6 +49,7 @@ function Home() {
 
           <Box className="hero-buttons">
             <Button
+            id="id1"
               variant="contained"
               size="large"
               component={Link}
@@ -58,6 +59,7 @@ function Home() {
             </Button>
 
             <Button
+            id="id2"
               variant="outlined"
               size="large"
               component={Link}
@@ -268,21 +270,12 @@ function Home() {
             <h3 className="footer-heading">Quick Links</h3>
             <ul className="footer-links">
               <li>
-                <a href="/">Home</a>
+                <a href="/login">Log In</a>
               </li>
               <li>
-                <a href="/Weather">Weather</a>
+                <a href="/register">Ragister</a>
               </li>
-              <li>
-                <a href="/guidance">Guidance</a>
-              </li>
-              <li>
-                <a href="/store">Store</a>
-              </li>
-              <li>
-                <a href="/login">Login</a>
-              </li>
-            
+
             </ul>
           </div>
 

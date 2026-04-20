@@ -1,0 +1,30 @@
+/* ===== ADD PRODUCT ===== */
+.add-container {
+  margin-top: 40px;
+}
+
+.form-card {
+  border-radius: 16px !important;
+  padding: 25px !important;
+  max-width: 500px;
+  margin: auto;
+}
+
+.form-title {
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Button */
+.add-btn {
+  margin-top: 10px !important;
+  border-radius: 25px !important;
+  padding: 10px !important;
+  text-transform: none !important;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+}

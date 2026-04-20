@@ -4,6 +4,14 @@ body {
 }
 
 /* ========== HERO SECTION ========== */
+#id1{
+  border-radius: 20px;
+  margin: 5px;
+}
+#id2{
+  border-radius: 20px;
+}
+
 .hero {
   position: relative;
   height: 420px;
@@ -44,6 +52,7 @@ body {
 
 .hero-buttons button:first-child {
   margin-right: 14px;
+  
 }
 
 /* ========== SECTION COMMON ========== */
