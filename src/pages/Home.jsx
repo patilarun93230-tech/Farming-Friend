@@ -1,4 +1,10 @@
-import { Container, Typography, Box, Grid, Button, Paper } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Box,
+  Grid,
+  Button,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -22,16 +28,19 @@ function Home() {
 
   const [index, setIndex] = useState(0);
 
+  // 🔥 ROLE
+  const role = localStorage.getItem("role");
+
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 3500);
     return () => clearInterval(timer);
-  }, []);  
+  }, []);
 
   return (
     <>
-      {/* ================= HERO SECTION ================= */}
+      {/* HERO */}
       <Box className="hero">
         <Box
           className="hero-bg"
@@ -47,29 +56,71 @@ function Home() {
             Smart guidance and trusted farming products for every farmer
           </Typography>
 
+          {/* 🔥 ROLE BASED BUTTONS */}
           <Box className="hero-buttons">
-            <Button
-            id="id1"
-              variant="contained"
-              size="large"
-              component={Link}
-              to="/guidance"
-            >
-              Get Guidance
-            </Button>
 
-            <Button
-            id="id2"
-              variant="outlined"
-              size="large"
-              component={Link}
-              to="/store"
-            >
-              Visit Store
-            </Button>
+            {/* 👨‍🌾 FARMER */}
+            {role === "farmer" && (
+              <>
+                <Button
+                  variant="contained"
+                  size="large"
+                  component={Link}
+                  to="/guidance"
+                >
+                  Get Guidance
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  size="large"
+                  component={Link}
+                  to="/store"
+                >
+                  Visit Store
+                </Button>
+              </>
+            )}
+
+            {/* 🏪 DISTRIBUTOR */}
+            {role === "distributor" && (
+              <>
+                <Button
+                  variant="contained"
+                  size="large"
+                  component={Link}
+                  to="/distributor"
+                >
+                  Dashboard
+                </Button>
+
+                <Button
+                  variant="outlined"
+                  size="large"
+                  component={Link}
+                  to="/add-product"
+                >
+                  Add Product
+                </Button>
+              </>
+            )}
+
+            {/* 🔐 NOT LOGGED */}
+            {!role && (
+              <Button
+                variant="contained"
+                size="large"
+                component={Link}
+                to="/login"
+              >
+                Login First
+              </Button>
+            )}
           </Box>
         </Container>
       </Box>
+
+      {/* ABOUT */}
       <Typography
         variant="body1"
         sx={{
@@ -81,16 +132,14 @@ function Home() {
           fontSize: "1.05rem",
         }}
       >
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <strong>Farming Friend</strong> is a smart digital platform created to
         support farmers with reliable guidance, quality agricultural products,
-        real-time market prices, and weather updates. Our goal is to empower
-        farmers by connecting them with expert knowledge, trusted resources, and
-        modern farming solutions that help increase productivity, improve crop
-        quality, and ensure sustainable growth. 🌱
+        real-time market prices, and weather updates.
       </Typography>
-      {/* ================= HIGHLIGHTS SECTION ================= */}
+
+      {/* HIGHLIGHTS */}
       <div className="highlights-section">
         <h2 className="highlights-title">Why Choose Farming Friend 🌱</h2>
 
@@ -98,206 +147,56 @@ function Home() {
           <div className="highlight-box">
             <AgricultureIcon className="highlight-icon success" />
             <h3>Expert Guidance</h3>
-            <p>
-              Get trusted advice from agricultural experts for better crop
-              yield.
-            </p>
+            <p>Get trusted advice from agricultural experts.</p>
           </div>
 
           <div className="highlight-box">
             <StorefrontIcon className="highlight-icon primary" />
             <h3>Quality Products</h3>
-            <p>Access certified seeds, fertilizers, and farming tools.</p>
+            <p>Access certified seeds and fertilizers.</p>
           </div>
 
           <div className="highlight-box">
             <CurrencyRupeeIcon className="highlight-icon warning" />
             <h3>Market Prices</h3>
-            <p>Stay updated with real-time mandi and market prices.</p>
+            <p>Stay updated with mandi prices.</p>
           </div>
 
           <div className="highlight-box">
             <CloudIcon className="highlight-icon info" />
             <h3>Weather Alerts</h3>
-            <p>Plan your farming with accurate weather updates.</p>
+            <p>Plan farming with weather updates.</p>
           </div>
         </div>
       </div>
 
-      {/* ================= CARDS SECTION ================= */}
-      <Container maxWidth="lg" sx={{ mt: 6 }}>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} sm={6} md={4}>
-            <Card className="farming-card">
-              <CardMedia
-                component="img"
-                height="180"
-                image="https://english.varthabharati.in/storage/uploads/india/MeetingPTI_vb_81.jpeg"
-                alt="Crop Guidance"
-                className="farming-card-img"
-              />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Meeting Exports 🤝🏻
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Meat exports and increase your knowledgeand give guidance.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Card className="farming-card">
-              <CardMedia
-                component="img"
-                height="180"
-                image="https://images.unsplash.com/photo-1464226184884-fa280b87c399"
-                alt="Store"
-                className="farming-card-img"
-              />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Quality Your Food 🍎
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Buy quality foods, increse your food quality and prices.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Card className="farming-card">
-              <CardMedia
-                component="img"
-                height="180"
-                image="https://tci.cornell.edu/wp-content/uploads/2021/08/Fruit_Mandi_by_PradeepGaurs_Shutterstock.jpg"
-                alt="Weather"
-                className="farming-card-img"
-              />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Market Price 💰
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Find out about the current market price by connecting with us.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Container>
-      {/* ================= CARDS SECTION ================= */}
-      <Container maxWidth="lg" sx={{ mt: 6 }}>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} sm={6} md={4}>
-            <Card className="farming-card">
-              <CardMedia
-                component="img"
-                height="180"
-                image="https://kj1bcdn.b-cdn.net/media/42142/kisan.png"
-                alt="Crop Guidance"
-                className="farming-card-img"
-              />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Smart Crop Guidance 🌾
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Get expert guidance to improve crop yield and farm
-                  productivity.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Card className="farming-card">
-              <CardMedia
-                component="img"
-                height="180"
-                image="https://img.freepik.com/premium-photo/scientist-examining-maize-crop-field_225486-1477.jpg?w=2000"
-                alt="Store"
-                className="farming-card-img"
-              />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Trusted Products 🧺
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Buy quality seeds, fertilizers and tools at best prices.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Card className="farming-card">
-              <CardMedia
-                component="img"
-                height="180"
-                image="https://images.news9live.com/wp-content/uploads/2023/06/monsoon.jpg?w=1200&enlarge=true"
-                alt="Weather"
-                className="farming-card-img"
-              />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Weather Updates ☁️
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Get real-time weather alerts for smart farming decisions.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Container>
-
+      {/* FOOTER */}
       <footer className="footer">
         <div className="footer-container">
-          {/* Column 1 – About */}
           <div className="footer-col">
-            <h3 className="footer-heading">Farming Friend</h3>
-            <p className="footer-text">
-              Helping farmers with smart guidance and trusted farming products.
-            </p>
-            <p className="footer-copy">© 2025 Farming Friend</p>
+            <h3>Farming Friend</h3>
+            <p>Helping farmers with smart guidance.</p>
           </div>
 
-          {/* Column 2 – Quick Links */}
           <div className="footer-col">
-            <h3 className="footer-heading">Quick Links</h3>
-            <ul className="footer-links">
-              <li>
-                <a href="/login">Log In</a>
-              </li>
-              <li>
-                <a href="/register">Ragister</a>
-              </li>
-
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Register</a></li>
             </ul>
           </div>
 
-          {/* Column 3 – Contact */}
           <div className="footer-col">
-            <h3 className="footer-heading">Contact</h3>
-            <p className="footer-text">Mr. Arun Patil</p>
+            <h3>Contact</h3>
+            <p>Arun Patil</p>
 
-            <div className="footer-icons">
-              <a href="mailto:patilarun93230@gmail.com" className="footer-icon">
-                <EmailIcon />
-                <span>patilarun93230@gmail.com</span>
+            <div>
+              <a href="mailto:patilarun93230@gmail.com">
+                <EmailIcon /> Email
               </a>
 
-              <a
-                href="https://www.instagram.com/patil_arun_011"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-icon"
-              >
-                <InstagramIcon />
-                <span>patil_arun_011</span>
+              <a href="https://www.instagram.com/patil_arun_011">
+                <InstagramIcon /> Instagram
               </a>
             </div>
           </div>

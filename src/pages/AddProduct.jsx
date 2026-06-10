@@ -2,19 +2,50 @@ import { Container, TextField, Button, Typography, Paper } from "@mui/material";
 import "./AddProduct.css";
 
 function AddProduct() {
-  const handleAdd = (e) => {
+
+  const handleAdd = async (e) => {
     e.preventDefault();
 
-    const name = e.target.name.value;
-    const price = e.target.price.value;
+    const name = e.target.name.value.trim();
+    const price = e.target.price.value.trim();
+    const image = e.target.image.value.trim();
 
-    const products = JSON.parse(localStorage.getItem("products")) || [];
+    if (!name || !price || !image) {
+      alert("Please fill all fields");
+      return;
+    }
 
-    products.push({ name, price });
+    const token = localStorage.getItem("token"); // 🔥 ADD
 
-    localStorage.setItem("products", JSON.stringify(products));
+    try {
+      const res = await fetch("http://localhost:5000/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token, // 🔥 ADD THIS
+        },
+        body: JSON.stringify({
+          name,
+          price,
+          distributor: localStorage.getItem("userName"),
+          image,
+        }),
+      });
 
-    alert("Product Added!");
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message);
+        return;
+      }
+
+      alert("Product Added ✅");
+      e.target.reset();
+
+    } catch (error) {
+      console.log(error);
+      alert("Server error");
+    }
   };
 
   return (
@@ -24,7 +55,8 @@ function AddProduct() {
 
         <form onSubmit={handleAdd}>
           <TextField name="name" label="Product Name" fullWidth margin="normal" />
-          <TextField name="price" label="Price" fullWidth margin="normal" />
+          <TextField name="price" label="Price" type="number" fullWidth margin="normal" />
+          <TextField name="image" label="Image URL" fullWidth margin="normal" />
 
           <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
             Add Product

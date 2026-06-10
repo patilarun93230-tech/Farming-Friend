@@ -5,10 +5,11 @@ import StoreIcon from "@mui/icons-material/Store";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import VideoCallIcon from "@mui/icons-material/VideoCall";
 import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import LogoutIcon from "@mui/icons-material/Logout";
+import VideoCallIcon from "@mui/icons-material/VideoCall";
+
 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -18,26 +19,37 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 🔥 STATE FIX
+  // 🔥 STATE
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState(null);
   const [userName, setUserName] = useState("");
 
+  // 🔥 Sync with localStorage
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
     setRole(localStorage.getItem("role"));
     setUserName(localStorage.getItem("userName"));
-  }, [location]); // 🔥 route change pe update
+  }, [location]);
 
+  // 🔥 Logout FIX
   const handleLogout = () => {
-    localStorage.clear();
-    setIsLoggedIn(false);
-    setRole(null);
-    navigate("/");
+    if (window.confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("role");
+      localStorage.removeItem("cart");
+
+      setIsLoggedIn(false);
+      setRole(null);
+      setUserName("");
+
+      navigate("/login");
+    }
   };
 
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+  // Active class
   const getClass = (path) =>
     location.pathname === path ? "nav-btn active" : "nav-btn";
 
@@ -64,7 +76,7 @@ function Navbar() {
           Farming Friend
         </Typography>
 
-        {/* Nav */}
+        {/* Nav Links */}
         <Box className="nav-links">
 
           {/* Home */}
@@ -109,6 +121,10 @@ function Navbar() {
                     <ShoppingCartIcon sx={{ mr: 1, fontSize: 18 }} />
                     Cart ({cart.length})
                   </Button>
+                  <Button component={Link} to="/videocall" className={getClass("/videocall")}>
+                  <VideoCallIcon sx={{ mr: 1, fontSize: 18 }} />
+                   Video Call
+                   </Button>
                 </>
               )}
 
@@ -133,12 +149,7 @@ function Navbar() {
                 </>
               )}
 
-              {/* COMMON */}
-              {/* <Button component={Link} to="/videocall" className={getClass("/videocall")}>
-                <VideoCallIcon sx={{ mr: 1, fontSize: 18 }} />
-                Video Call
-              </Button> */}
-
+              {/* Logout */}
               <Button
                 onClick={handleLogout}
                 variant="outlined"

@@ -6,16 +6,15 @@ import {
   MenuItem,
   Paper,
 } from "@mui/material";
-import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 function Register() {
   const navigate = useNavigate();
-
   const [role, setRole] = useState("farmer");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
   e.preventDefault();
 
   const firstName = e.target.firstName.value.trim();
@@ -41,57 +40,52 @@ function Register() {
     return;
   }
 
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  try {
+    const res = await fetch("http://localhost:5000/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        mobile,
+        password,
+        role,
+        ...(role === "farmer" && { land, experience }),
+      }),
+    });
 
-  const userExists = users.find((u) => u.mobile === mobile);
-  if (userExists) {
-    alert("User already exists with this number");
-    return;
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message);
+      return;
+    }
+
+    alert("Registration Successful ✅");
+
+    e.target.reset();
+    navigate("/login");
+
+  } catch (error) {
+    console.log(error);
+    alert("Server error");
   }
-
-  const newUser = {
-    firstName,
-    lastName,
-    mobile,
-    password,
-    role,
-    ...(role === "farmer" && { land, experience }),
-  };
-
-  users.push(newUser);
-  localStorage.setItem("users", JSON.stringify(users));
-
-  alert("Registration Successful ✅");
-
-  e.target.reset();
-  navigate("/login");
 };
 
   return (
     <Container className="register-container">
       <Paper elevation={6} className="register-card">
-        <Typography variant="h5" className="register-title">
+        <Typography variant="h5">
           🌾 Register on Farming Friend
         </Typography>
 
         <form onSubmit={handleRegister}>
-          <TextField
-            name="firstName"
-            label="First Name"
-            fullWidth
-            margin="normal"
-          />
+          <TextField name="firstName" label="First Name" fullWidth margin="normal" />
+          <TextField name="lastName" label="Last Name" fullWidth margin="normal" />
 
           <TextField
-            name="lastName"
-            label="Last Name"
-            fullWidth
-            margin="normal"
-          />
-
-          {/* ROLE SELECT 🔥 */}
-          <TextField
-            id="id1"
             select
             label="Select Role"
             fullWidth
@@ -99,21 +93,20 @@ function Register() {
             value={role}
             onChange={(e) => setRole(e.target.value)}
           >
-            <MenuItem value="farmer">🌾 Farmer</MenuItem>
-            <MenuItem value="distributor">🏪 Distributor</MenuItem>
+            <MenuItem value="farmer">Farmer</MenuItem>
+            <MenuItem value="distributor">Distributor</MenuItem>
           </TextField>
 
-          {/* Farmer Fields */}
           {role === "farmer" && (
             <>
               <TextField
                 select
                 name="land"
-                label="Land Area (Acres)"
+                label="Land Area"
                 fullWidth
                 margin="normal"
               >
-                {Array.from({ length: 11 }, (_, i) => (
+                {[...Array(11).keys()].map((i) => (
                   <MenuItem key={i} value={i}>
                     {i} Acres
                   </MenuItem>
@@ -123,44 +116,23 @@ function Register() {
               <TextField
                 select
                 name="experience"
-                label="Farming Experience"
+                label="Experience"
                 fullWidth
                 margin="normal"
               >
-                <MenuItem value="fresher">🌱 Fresher</MenuItem>
-                <MenuItem value="experienced">🌾 Experienced</MenuItem>
+                <MenuItem value="fresher">Fresher</MenuItem>
+                <MenuItem value="experienced">Experienced</MenuItem>
               </TextField>
             </>
           )}
 
-          <TextField
-            name="mobile"
-            label="Contact Number"
-            fullWidth
-            margin="normal"
-          />
+          <TextField name="mobile" label="Mobile" fullWidth margin="normal" />
+          <TextField name="password" label="Password" type="password" fullWidth margin="normal" />
 
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            fullWidth
-            margin="normal"
-          />
-
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            className="register-btn"
-          >
+          <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
             Register
           </Button>
         </form>
-
-        <Typography className="login-link">
-          Already registered? <Link to="/login">Login here</Link>
-        </Typography>
       </Paper>
     </Container>
   );

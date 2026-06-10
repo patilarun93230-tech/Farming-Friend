@@ -15,54 +15,56 @@ function Login() {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+ const handleLogin = async () => {
+  try {
+    const res = await fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mobile,
+        password,
+      }),
+    });
 
-  if (users.length === 0) {
-    alert("Please register first");
-    return;
-  }
+    const data = await res.json();
 
-  // 🔥 Find matching user
-  const foundUser = users.find(
-    (u) => u.mobile === mobile && u.password === password
-  );
+    if (!res.ok) {
+      alert(data.message);
+      return;
+    }
 
-  if (!foundUser) {
-    alert("Invalid mobile or password");
-    return;
-  }
+    // 🔥 JWT TOKEN SAVE
+    localStorage.setItem("token", data.token);
 
-  // Login success
-localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem(
+      "userName",
+      data.user.firstName + " " + data.user.lastName
+    );
+    localStorage.setItem("role", data.user.role);
 
-localStorage.setItem(
-  "userName",
-  foundUser.firstName + " " + foundUser.lastName
-);
+    // 🔥 ROLE BASED REDIRECT
+    if (data.user.role === "distributor") {
+      navigate("/distributor");
+    } else {
+      navigate("/");
+    }
 
-localStorage.setItem("role", foundUser.role);
-
-  // 🔥 ROLE BASED REDIRECT
-  if (foundUser.role === "distributor") {
-    navigate("/distributor");
-  } else {
-    navigate("/");
+  } catch (error) {
+    console.log(error);
+    alert("Server error");
   }
 };
+
   return (
     <Container className="login-container">
-      <Paper elevation={6} className="login-card">
-        <Typography variant="h5" className="login-title">
-          🌱 Login to Farming Friend
-        </Typography>
-
-        <Typography className="login-subtitle">
-          Access your account
-        </Typography>
+      <Paper className="login-card">
+        <Typography variant="h5">Login</Typography>
 
         <TextField
-          label="Contact Number"
+          label="Mobile"
           fullWidth
           margin="normal"
           value={mobile}
@@ -78,22 +80,16 @@ localStorage.setItem("role", foundUser.role);
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button
-          variant="contained"
-          fullWidth
-          className="login-btn"
-          onClick={handleLogin}
-        >
+        <Button onClick={handleLogin} fullWidth variant="contained">
           Login
         </Button>
 
-        <Typography className="register-link">
-          New user? <Link to="/register">Create account</Link>
+        <Typography>
+          New user? <Link to="/register">Register</Link>
         </Typography>
       </Paper>
     </Container>
   );
 }
 
-export default Login;
-
+export default Login; // 🔥 MOST IMPORTANT

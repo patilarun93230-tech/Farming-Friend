@@ -1,3 +1,6 @@
+import { useState } from "react";
+import axios from "axios";
+
 import {
   Container,
   Card,
@@ -5,6 +8,10 @@ import {
   CardMedia,
   Typography,
   Grid,
+  Box,
+  TextField,
+  Button,
+  CircularProgress,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
@@ -138,47 +145,194 @@ const crops = [
 ];
 
 function Guidance() {
+  const [question, setQuestion] = useState("");
+const [answer, setAnswer] = useState("");
+const [loading, setLoading] = useState(false);
+const askAI = async () => {
+  if (!question.trim()) return;
+
+  setLoading(true);
+
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/chat",
+      {
+        message: question,
+      }
+    );
+
+    setAnswer(res.data.reply);
+  } catch (error) {
+    console.error(error);
+    setAnswer("Failed to get AI response.");
+  }
+
+  setLoading(false);
+};
   return (
-    <Container className="guidance">
-      {/* Title */}
-      <Typography variant="h4" className="guidance-title">
-        <AgricultureIcon className="guidance-icon" />
-        Farming Guidance
+  <Container className="guidance">
+
+    {/* Title */}
+    <Typography variant="h4" className="guidance-title">
+      <AgricultureIcon className="guidance-icon" />
+      Farming Guidance
+    </Typography>
+
+    {/* AI Assistant */}
+    <Card
+      sx={{
+        mb: 5,
+        p: 4,
+        borderRadius: 4,
+        background:
+          "linear-gradient(135deg, #e8f5e9, #ffffff)",
+        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={{
+          fontWeight: "bold",
+          color: "#2e7d32",
+          mb: 1,
+        }}
+      >
+        🤖 Farming AI Assistant
       </Typography>
-      <br></br>
-      {/* Cards */}
-      <Grid container spacing={9}>
-        {crops.map((crop) => (
-          <Grid item xs={12} sm={7} md={4} key={crop.id}>
-            <Card className="crop-card">
-              {/* Image */}
-              <CardMedia
-                component="img"
-                height="180"
-                image={crop.image}
-                alt={crop.name}
-                className="crop-image"
-              />
 
-              <CardContent>
-                <Typography variant="h6" className="crop-name">
-                  {crop.name}
-                </Typography>
+      <Typography
+        variant="body1"
+        sx={{
+          color: "#555",
+          mb: 3,
+        }}
+      >
+        Ask questions about crops, fertilizers,
+        diseases, irrigation and modern farming.
+      </Typography>
 
-                <Typography className="crop-season">
-                  Season: {crop.season}
-                </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          flexWrap: "wrap",
+        }}
+      >
+        <TextField
+  fullWidth
+  variant="outlined"
+  placeholder="Ask your farming question..."
+  value={question}
+  onChange={(e) => setQuestion(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") askAI();
+  }}
+  sx={{
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "14px",
+      backgroundColor: "#fff",
+    },
+  }}
+/>
 
-                <Link to={`/crop/${crop.name}`} className="crop-link">
-                  View Details →
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-  );
+        <Button
+  variant="contained"
+  onClick={askAI}
+  sx={{
+    minWidth: "140px",
+    borderRadius: "14px",
+    fontWeight: 600,
+    backgroundColor: "#2e7d32",
+  }}
+>
+  Ask AI
+</Button>
+      </Box>
+
+      {loading && (
+        <Box
+          sx={{
+            mt: 3,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
+
+      {answer && (
+        <Card
+          sx={{
+            mt: 4,
+            borderRadius: 3,
+            backgroundColor: "#f9fff9",
+          }}
+        >
+          <CardContent>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#2e7d32",
+                fontWeight: "bold",
+              }}
+            >
+              🌾 AI Recommendation
+            </Typography>
+
+            <Typography sx={{ mt: 1 }}>
+              {answer}
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
+    </Card>
+
+    {/* Crop Cards */}
+    <Grid container spacing={4}>
+      {crops.map((crop) => (
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          key={crop.id}
+        >
+          <Card className="crop-card">
+            <CardMedia
+              component="img"
+              height="180"
+              image={crop.image}
+              alt={crop.name}
+              className="crop-image"
+            />
+
+            <CardContent>
+              <Typography
+                variant="h6"
+                className="crop-name"
+              >
+                {crop.name}
+              </Typography>
+
+              <Typography className="crop-season">
+                Season: {crop.season}
+              </Typography>
+
+              <Link
+                to={`/crop/${crop.name}`}
+                className="crop-link"
+              >
+                View Details →
+              </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+
+  </Container>
+);
 }
 
-export default Guidance;
+export default Guidance;  
