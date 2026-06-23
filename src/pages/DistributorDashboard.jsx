@@ -12,7 +12,7 @@ function DistributorDashboard() {
   // 🔥 FETCH DATA
   useEffect(() => {
     // PRODUCTS
-    fetch("http://localhost:5000/api/products", {
+ fetch("https://farming-friend-backend.onrender.com/api/products", {
       headers: {
         Authorization: token,
       },
@@ -28,7 +28,7 @@ function DistributorDashboard() {
       .catch((err) => console.log(err));
 
     // ORDERS
-    fetch("http://localhost:5000/api/orders", {
+fetch("https://farming-friend-backend.onrender.com/api/orders", {
       headers: {
         Authorization: token,
       },

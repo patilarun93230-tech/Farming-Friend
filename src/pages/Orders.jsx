@@ -17,7 +17,7 @@ function Orders() {
 
   // 🔥 Fetch from backend
   const fetchOrders = () => {
-    fetch("http://localhost:5000/api/orders", {
+fetch("https://farming-friend-backend.onrender.com/api/orders", {
       headers: {
         Authorization: token, // 🔥 ADD
       },
@@ -34,7 +34,7 @@ function Orders() {
   // 🔥 Mark Complete Function
   const markComplete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/orders/${id}`, {
+await fetch(`https://farming-friend-backend.onrender.com/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

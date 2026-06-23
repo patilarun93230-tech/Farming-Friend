@@ -18,7 +18,7 @@ function AddProduct() {
     const token = localStorage.getItem("token"); // 🔥 ADD
 
     try {
-      const res = await fetch("http://localhost:5000/api/products", {
+const res = await fetch("https://farming-friend-backend.onrender.com/api/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

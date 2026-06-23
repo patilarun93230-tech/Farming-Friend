@@ -17,7 +17,7 @@ function Login() {
 
  const handleLogin = async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/users/login", {
+const res = await fetch("https://farming-friend-backend.onrender.com/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

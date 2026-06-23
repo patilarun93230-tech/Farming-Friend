@@ -14,7 +14,7 @@ function ManageProducts() {
 
   // 🔥 Fetch from backend
   const fetchProducts = () => {
-    fetch("http://localhost:5000/api/products")
+fetch("https://farming-friend-backend.onrender.com/api/products")
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));
@@ -27,7 +27,7 @@ function ManageProducts() {
   // 🔥 Delete Product
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/products/${id}`, {
+await fetch(`https://farming-friend-backend.onrender.com/api/products/${id}`, {
         method: "DELETE",
       });
 

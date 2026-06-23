@@ -18,7 +18,7 @@ function VideoCall() {
 
   // 🔥 Fetch experienced farmers
   useEffect(() => {
-    fetch("http://localhost:5000/api/users/experienced")
+fetch("https://farming-friend-backend.onrender.com/api/users/experienced")
       .then((res) => res.json())
       .then((data) => setFarmers(data))
       .catch((err) => console.log(err));

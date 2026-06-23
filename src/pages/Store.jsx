@@ -19,7 +19,7 @@ const token = localStorage.getItem("token");
 
 // 🔥 FETCH PRODUCTS FROM BACKEND
 useEffect(() => {
-  fetch("http://localhost:5000/api/products", {
+fetch("https://farming-friend-backend.onrender.com/api/products", {
     headers: {
       Authorization: token, // 🔥 ADD THIS
     },
