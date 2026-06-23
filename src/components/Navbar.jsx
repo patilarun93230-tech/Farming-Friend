@@ -9,7 +9,14 @@ import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import LogoutIcon from "@mui/icons-material/Logout";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
-
+import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -20,6 +27,8 @@ function Navbar() {
   const location = useLocation();
 
   // 🔥 STATE
+  const [drawerOpen, setDrawerOpen] = useState(false);
+const isMobile = useMediaQuery("(max-width:768px)");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState(null);
   const [userName, setUserName] = useState("");
@@ -53,7 +62,7 @@ function Navbar() {
   const getClass = (path) =>
     location.pathname === path ? "nav-btn active" : "nav-btn";
 
-  return (
+  return (<>
    <AppBar
   position="sticky"
   elevation={0}
@@ -84,7 +93,8 @@ function Navbar() {
         </Typography>
 
         {/* Nav Links */}
-        <Box className="nav-links">
+        {!isMobile ? (
+  <Box className="nav-links">
 
           {/* Home */}
           <Button component={Link} to="/" className={getClass("/")}>
@@ -167,9 +177,180 @@ function Navbar() {
               </Button>
             </>
           )}
+          
         </Box>
+        ) : (
+  <IconButton
+    color="inherit"
+    onClick={() => setDrawerOpen(true)}
+  >
+    <MenuIcon sx={{ fontSize: 32 }} />
+  </IconButton>
+)}
+        
       </Toolbar>
     </AppBar>
+    <Drawer
+  anchor="right"
+  open={drawerOpen}
+  onClose={() => setDrawerOpen(false)}
+>
+  <Box sx={{ width: 260 }}>
+
+    <List>
+      <ListItem disablePadding>
+        <ListItemButton
+          component={Link}
+          to="/"
+          onClick={() => setDrawerOpen(false)}
+        >
+          <ListItemText primary="🏠 Home" />
+        </ListItemButton>
+      </ListItem>
+
+      {!isLoggedIn ? (
+        <>
+          <ListItem disablePadding>
+            <ListItemButton
+              component={Link}
+              to="/login"
+              onClick={() => setDrawerOpen(false)}
+            >
+              <ListItemText primary="🔑 Login" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton
+              component={Link}
+              to="/register"
+              onClick={() => setDrawerOpen(false)}
+            >
+              <ListItemText primary="📝 Register" />
+            </ListItemButton>
+          </ListItem>
+        </>
+      ) : (
+        <>
+          {role === "farmer" && (
+            <>
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/guidance"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="📖 Guidance" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/store"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="🏪 Store" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/weather"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="☀️ Weather" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/cart"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText
+                    primary={`🛒 Cart (${cart.length})`}
+                  />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/videocall"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="📹 Video Call" />
+                </ListItemButton>
+              </ListItem>
+            </>
+          )}
+
+          {role === "distributor" && (
+            <>
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/distributor"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="📊 Dashboard" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/add-product"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="➕ Add Product" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/manage-products"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="📦 Products" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  to="/orders"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <ListItemText primary="📋 Orders" />
+                </ListItemButton>
+              </ListItem>
+            </>
+          )}
+
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => {
+                setDrawerOpen(false);
+                handleLogout();
+              }}
+            >
+              <ListItemText
+                primary={`🚪 Logout (${userName})`}
+              />
+            </ListItemButton>
+          </ListItem>
+        </>
+      )}
+    </List>
+
+  </Box>
+</Drawer>
+   </> 
   );
 }
 
