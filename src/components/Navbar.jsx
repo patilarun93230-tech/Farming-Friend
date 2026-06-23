@@ -54,15 +54,22 @@ function Navbar() {
     location.pathname === path ? "nav-btn active" : "nav-btn";
 
   return (
-    <AppBar
-      position="sticky"
-      elevation={0}
-      sx={{
-        backdropFilter: "blur(10px)",
-        background: "rgba(34, 139, 34, 0.85)",
-      }}
-    >
-      <Toolbar className="navbar">
+   <AppBar
+  position="sticky"
+  elevation={0}
+  sx={{
+    backdropFilter: "blur(10px)",
+    background: "rgba(34, 139, 34, 0.85)",
+    minHeight: "90px",
+  }}
+>
+    <Toolbar
+  className="navbar"
+  sx={{
+    minHeight: "90px !important",
+    height: "90px",
+  }}
+>
 
         {/* Logo */}
         <Typography
@@ -72,7 +79,7 @@ function Navbar() {
           className="logo"
           style={{ textDecoration: "none", color: "white" }}
         >
-          <AgricultureIcon sx={{ mr: 1, fontSize: 18 }} />
+<AgricultureIcon sx={{ mr: 1, fontSize: 28 }} />
           Farming Friend
         </Typography>
 

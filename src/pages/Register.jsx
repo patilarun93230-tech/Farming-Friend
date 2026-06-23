@@ -92,6 +92,7 @@ function Register() {
             margin="normal"
             value={role}
             onChange={(e) => setRole(e.target.value)}
+            id="id1"
           >
             <MenuItem value="farmer">Farmer</MenuItem>
             <MenuItem value="distributor">Distributor</MenuItem>

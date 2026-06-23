@@ -119,25 +119,30 @@ function Home() {
           </Box>
         </Container>
       </Box>
-
+<br />
+<br />
+<br />
       {/* ABOUT */}
       <Typography
-        variant="body1"
-        sx={{
-          textAlign: "center",
-          maxWidth: "900px",
-          margin: "20px auto",
-          color: "text.secondary",
-          lineHeight: 1.8,
-          fontSize: "1.05rem",
-        }}
-      >
-        <br />
-        <br />
-        <strong>Farming Friend</strong> is a smart digital platform created to
-        support farmers with reliable guidance, quality agricultural products,
-        real-time market prices, and weather updates.
-      </Typography>
+  variant="body1"
+  sx={{
+    textAlign: "center",
+    maxWidth: "950px",
+    margin: "20px auto",
+    color: "text.secondary",
+    lineHeight: 1.9,
+    fontSize: "1.05rem",
+  }}
+>
+  <strong>Farming Friend</strong> is a smart digital platform designed to
+  empower farmers with modern agricultural solutions. The platform provides
+  expert crop guidance, real-time weather updates, market price information,
+  and access to quality seeds, fertilizers, and farming products. Our goal is
+  to help farmers make informed decisions, improve productivity, and adopt
+  smarter farming practices through technology. With a user-friendly interface
+  and reliable information, Farming Friend acts as a trusted companion for
+  every farmer's journey.
+</Typography>
 
       {/* HIGHLIGHTS */}
       <div className="highlights-section">
@@ -169,39 +174,83 @@ function Home() {
           </div>
         </div>
       </div>
+      
 
       {/* FOOTER */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-col">
-            <h3>Farming Friend</h3>
-            <p>Helping farmers with smart guidance.</p>
-          </div>
+<footer className="footer">
+  <div className="footer-container">
 
-          <div className="footer-col">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/register">Register</a></li>
-            </ul>
-          </div>
+    {/* Column 1 */}
+    <div className="footer-col">
+      <h2 className="footer-logo">🌱 Farming Friend</h2>
+      <p>
+        Empowering farmers with smart guidance,
+        quality agricultural products, weather updates,
+        and market insights.
+      </p>
+    </div>
 
-          <div className="footer-col">
-            <h3>Contact</h3>
-            <p>Arun Patil</p>
+    {/* Column 2 */}
+    <div className="footer-col">
+      <h3>Quick Links</h3>
 
-            <div>
-              <a href="mailto:patilarun93230@gmail.com">
-                <EmailIcon /> Email
-              </a>
+      <ul className="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/guidance">Guidance</a></li>
+        <li><a href="/store">Store</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </div>
 
-              <a href="https://www.instagram.com/patil_arun_011">
-                <InstagramIcon /> Instagram
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+    {/* Column 3 */}
+    <div className="footer-col">
+      <h3>Features</h3>
+
+      <ul className="footer-links">
+        <li>🌾 Crop Guidance</li>
+        <li>🌦 Weather Updates</li>
+        <li>💰 Market Prices</li>
+        <li>🛒 Agriculture Store</li>
+        <li>👨‍🌾 Expert Support</li>
+      </ul>
+    </div>
+
+    {/* Column 4 */}
+    <div className="footer-col">
+      <h3>Contact</h3>
+
+      <div className="footer-contact">
+        <p>Arun Patil</p>
+
+        <a
+          href="mailto:patilarun93230@gmail.com"
+          className="footer-icon"
+        >
+          <EmailIcon />
+          Email
+        </a>
+
+        <a
+          href="https://www.instagram.com/patil_arun_011"
+          target="_blank"
+          rel="noreferrer"
+          className="footer-icon"
+        >
+          <InstagramIcon />
+          Instagram
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div className="footer-bottom">
+    <p>
+      © 2026 Farming Friend | Developed by Arun Patil
+    </p>
+  </div>
+</footer>
     </>
   );
 }
