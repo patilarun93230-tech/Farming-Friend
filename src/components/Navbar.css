@@ -5,12 +5,12 @@
   align-items: center;
 
   min-height: 80px;
+  width: 100%;
+
   padding: 12px 24px;
 
   backdrop-filter: blur(10px);
   background: rgba(34, 139, 34, 0.88);
-
-  border-radius: 10px;
 }
 
 /* ===== LOGO ===== */
@@ -120,30 +120,23 @@
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    min-height: auto;
-    padding: 12px;
-    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 80px;
+    width: 100%;
+
+    padding: 10px 16px;
   }
 
   .logo {
-    font-size: 1.3rem !important;
+    font-size: 1.25rem !important;
   }
 
+  /* Desktop menu hide */
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .nav-btn,
-  .register-btn,
-  .logout-btn {
-    font-size: 13px !important;
-    padding: 6px 12px !important;
-  }
-
-  .nav-btn svg {
-    font-size: 16px !important;
+    display: none !important;
   }
 }
