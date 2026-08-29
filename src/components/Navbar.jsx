@@ -26,21 +26,21 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 🔥 STATE
+  
   const [drawerOpen, setDrawerOpen] = useState(false);
 const isMobile = useMediaQuery("(max-width:768px)");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState(null);
   const [userName, setUserName] = useState("");
 
-  // 🔥 Sync with localStorage
+  
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
     setRole(localStorage.getItem("role"));
     setUserName(localStorage.getItem("userName"));
   }, [location]);
 
-  // 🔥 Logout FIX
+  
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       localStorage.removeItem("isLoggedIn");
@@ -58,7 +58,7 @@ const isMobile = useMediaQuery("(max-width:768px)");
 
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Active class
+  
   const getClass = (path) =>
     location.pathname === path ? "nav-btn active" : "nav-btn";
 
@@ -80,7 +80,7 @@ const isMobile = useMediaQuery("(max-width:768px)");
   }}
 >
 
-        {/* Logo */}
+        
         <Typography
           variant="h6"
           component={Link}

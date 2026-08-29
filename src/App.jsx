@@ -14,7 +14,7 @@ import Checkout from "./pages/Checkout";
 import VideoCall from "./pages/VideoCall";
 import Weather from "./pages/Weather";
 
-/* 🔥 NEW IMPORTS (Distributor) */
+
 import DistributorDashboard from "./pages/DistributorDashboard";
 import AddProduct from "./pages/AddProduct";
 import ManageProducts from "./pages/ManageProducts";
@@ -26,7 +26,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* Public Routes */}
+        
         <Route path="/" element={<Home />} />
         <Route path="/guidance" element={<Guidance />} />
         <Route path="/crop/:name" element={<CropDetail />} />
@@ -34,7 +34,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* 🔐 Protected Routes */}
+        
         <Route
           path="/cart"
           element={
@@ -53,11 +53,11 @@ function App() {
           }
         />
 
-        {/* Other */}
+        
         <Route path="/videocall" element={<VideoCall />} />
         <Route path="/weather" element={<Weather />} />
 
-        {/* 🏪 DISTRIBUTOR ROUTES (IMPORTANT 🔥) */}
+        
         <Route
           path="/distributor"
           element={

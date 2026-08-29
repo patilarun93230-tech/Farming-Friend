@@ -1,4 +1,4 @@
-/* ===== NAVBAR MAIN ===== */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   background: rgba(34, 139, 34, 0.88);
 }
 
-/* ===== LOGO ===== */
+
 .logo {
   display: flex;
   align-items: center;
@@ -31,14 +31,14 @@
   transform: scale(1.04);
 }
 
-/* ===== NAV LINKS ===== */
+
 .nav-links {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-/* ===== COMMON BUTTONS ===== */
+
 .nav-btn {
   color: #ffffff !important;
   text-transform: none !important;
@@ -55,23 +55,23 @@
   transition: all 0.3s ease !important;
 }
 
-/* ===== ICON SIZE ===== */
+
 .nav-btn svg {
   font-size: 18px !important;
 }
 
-/* ===== HOVER ===== */
+
 .nav-btn:hover {
   background: rgba(255, 255, 255, 0.18) !important;
   transform: translateY(-2px);
 }
 
-/* ===== ACTIVE TAB ===== */
+
 .active {
   background: rgba(255, 255, 255, 0.22) !important;
 }
 
-/* ===== REGISTER BUTTON ===== */
+
 .register-btn {
   color: white !important;
   border: 1px solid white !important;
@@ -91,7 +91,7 @@
   background: rgba(255, 255, 255, 0.22) !important;
 }
 
-/* ===== LOGOUT BUTTON ===== */
+
 .logout-btn {
   color: white !important;
   border: 1px solid white !important;
@@ -111,13 +111,13 @@
   background: rgba(255, 255, 255, 0.22) !important;
 }
 
-/* ===== CART BUTTON ===== */
+
 .nav-btn[href="/cart"] {
   background: #ff9800 !important;
   color: white !important;
 }
 
-/* ===== MOBILE ===== */
+
 @media (max-width: 768px) {
   .navbar {
     display: flex;
