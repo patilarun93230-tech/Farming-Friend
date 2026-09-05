@@ -92,7 +92,7 @@ const isMobile = useMediaQuery("(max-width:768px)");
           Farming Friend
         </Typography>
 
-        {/* Nav Links */}
+        
         {!isMobile ? (
   <Box className="nav-links">
 
@@ -116,7 +116,7 @@ const isMobile = useMediaQuery("(max-width:768px)");
             </>
           ) : (
             <>
-              {/* 👨‍🌾 FARMER */}
+             
               {role === "farmer" && (
                 <>
                   <Button component={Link} to="/guidance" className={getClass("/guidance")}>
@@ -145,7 +145,7 @@ const isMobile = useMediaQuery("(max-width:768px)");
                 </>
               )}
 
-              {/* 🏪 DISTRIBUTOR */}
+              
               {role === "distributor" && (
                 <>
                   <Button component={Link} to="/distributor" className={getClass("/distributor")}>
@@ -166,7 +166,7 @@ const isMobile = useMediaQuery("(max-width:768px)");
                 </>
               )}
 
-              {/* Logout */}
+             
               <Button
                 onClick={handleLogout}
                 variant="outlined"

@@ -145,9 +145,10 @@ const crops = [
 ];
 
 function Guidance() {
-  const [question, setQuestion] = useState("");
+const [question, setQuestion] = useState("");
 const [answer, setAnswer] = useState("");
 const [loading, setLoading] = useState(false);
+
 const askAI = async () => {
   if (!question.trim()) return;
 
